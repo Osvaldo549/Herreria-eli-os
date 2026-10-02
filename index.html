@@ -320,5 +320,56 @@ footer{padding:30px 0;text-align:center;color:#888;border-top:1px solid var(--li
   render();
 })();
 </script>
+<!-- Visor de imágenes -->
+<div id="visor" style="
+  display:none;
+  position:fixed;
+  z-index:9999;
+  inset:0;
+  background:rgba(0,0,0,0.92);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+">
+
+  <button onclick="cerrarImagen()" style="
+    position:absolute;
+    top:15px;
+    right:20px;
+    background:none;
+    border:none;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+  ">×</button>
+
+  <img id="imagenGrande" src="" alt="Trabajo de Herrería Eli-OS" style="
+    max-width:95%;
+    max-height:90vh;
+    object-fit:contain;
+    border-radius:10px;
+  ">
+</div>
+
+<script>
+document.querySelectorAll('img').forEach(function(img) {
+  img.style.cursor = 'pointer';
+
+  img.addEventListener('click', function() {
+    document.getElementById('imagenGrande').src = this.src;
+    document.getElementById('visor').style.display = 'flex';
+  });
+});
+
+function cerrarImagen() {
+  document.getElementById('visor').style.display = 'none';
+}
+
+document.getElementById('visor').addEventListener('click', function(e) {
+  if (e.target === this) {
+    cerrarImagen();
+  }
+});
+</script>
 </body>
 </html>
